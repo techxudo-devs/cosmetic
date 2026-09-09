@@ -1,26 +1,48 @@
 import Link from "next/link";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  tone?: "photo" | "page";
+};
+
+export function SiteHeader({ tone = "photo" }: SiteHeaderProps) {
+  const onPhoto = tone === "photo";
+
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
+    <header
+      className={
+        onPhoto
+          ? "absolute inset-x-0 top-0 z-30"
+          : "relative z-30 bg-cream"
+      }
+    >
       <nav className="mx-auto grid max-w-[1440px] grid-cols-3 items-center px-5 py-6 sm:px-8 lg:px-12">
-        <div className="flex items-center gap-6 text-[13px] tracking-[0.14em] text-white sm:gap-10">
-          <Link href="#catalog" className="transition hover:opacity-70">
+        <div
+          className={`flex items-center gap-6 text-[13px] tracking-[0.14em] sm:gap-10 ${
+            onPhoto ? "text-white" : "text-forest"
+          }`}
+        >
+          <Link href="/catalog" className="transition hover:opacity-70">
             Catalog
           </Link>
-          <Link href="#shop" className="transition hover:opacity-70">
+          <Link href="/product" className="transition hover:opacity-70">
             Shop
           </Link>
         </div>
 
         <Link
           href="/"
-          className="justify-self-center font-tan text-5xl leading-none text-white sm:text-6xl lg:text-7xl"
+          className={`justify-self-center font-tan text-5xl leading-none sm:text-6xl lg:text-7xl ${
+            onPhoto ? "text-white" : "text-forest"
+          }`}
         >
           Veya
         </Link>
 
-        <div className="flex items-center justify-end gap-5 text-[13px] tracking-[0.14em] text-white sm:gap-7">
+        <div
+          className={`flex items-center justify-end gap-5 text-[13px] tracking-[0.14em] sm:gap-7 ${
+            onPhoto ? "text-white" : "text-forest"
+          }`}
+        >
           <button
             type="button"
             aria-label="Search"
@@ -33,7 +55,11 @@ export function SiteHeader() {
             className="flex items-center gap-2 transition hover:opacity-70"
           >
             <span className="hidden sm:inline">Basket</span>
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-white/70 px-1 text-[10px] leading-none">
+            <span
+              className={`flex h-5 min-w-5 items-center justify-center rounded-full border px-1 text-[10px] leading-none ${
+                onPhoto ? "border-white/70" : "border-forest/40"
+              }`}
+            >
               0
             </span>
           </Link>
