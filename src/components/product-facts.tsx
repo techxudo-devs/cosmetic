@@ -1,6 +1,12 @@
 import { CoverImage } from "@/components/cover-image";
 
-const GROUPS = [
+type FactRow = {
+  label: string;
+  value: string;
+  compact?: boolean;
+};
+
+const GROUPS: FactRow[][] = [
   [
     { label: "Best for:", value: "Oily and stressed skin" },
     { label: "Feels like:", value: "Cool + creamy on application" },
